@@ -32,7 +32,7 @@ You are required to include your contact information, including a physical maili
     * **Reply To** - If your user hits reply in their email, the reply will go to this address.
     * **Company Address, City, State, Zip Code, Country** - The address of your business. CAN-SPAM regulations require this information in every email you send.
     * **Nickname** - A label for your sender identity to help you identify it more quickly. This is not visible to your recipients.
-<br></br>
+<br>
 1. Check the inbox of the email address that you entered and click the link in the email to verify the Sender email.
 
 If, for any reason, you need to resend the verification email, click the action menu on the Sender Management page and select **Resend Verification**.
@@ -51,9 +51,12 @@ You may create up to 100 unique senders.
 
 </call-out>
 
+
 <call-out>
   
+
 If you have an [authenticated domain]({{root_url}}/ui/account-and-settings/how-to-set-up-domain-authentication/) and your sender email address matches that domain exactly, your sender identity will be automatically verified.
+
 
 </call-out>
 
