@@ -238,31 +238,9 @@ In the future, the address fields may be used with a third-party service to popu
 
 </call-out>
 
-Note that the `list_id` attribute is no longer present in the top-level object. It is instead replaced by a `list_ids` field that is a set of IDs. Making `list_ids` a regular contact field allows, for example, specifying multiple lists from which to draw contacts, or that each contact must be a member of multiple lists. Similarly, there is a `segment_ids` field that allows creating conditions specifying membership in other segments. (Conditions on `segment_ids` will need to be checked to ensure they don’t create circular dependencies or extreme levels of nesting.)
+Note that the `list_id` attribute is no longer present in the top-level object. It is instead replaced by a `list_ids` field that is a set of IDs. Making `list_ids` a regular contact field allows, for example, specifying multiple lists from which to draw contacts, or that each contact must be a member of multiple lists. 
 
-Besides `list_ids` and `segment_ids`, the fields created by event queries are also set fields, also known as unordered collections. Collections are fields containing multiple values. They may be ordered, in which case they are called arrays. Array elements may be accessed by their index using the `[]` operator. For example, if `products` is an array of strings, `products[0] IS 'pet rock'` would mean that the first element of `products` must be 'pet rock'. This operator can also be used with a variable inside the brackets, for either type of collection, indicating that any element in the collection may be used to satisfy the condition. If multiple conditions specify the same variable on the same field, then the same element in each collection must be used to satisfy each of those conditions. If a variable is only used in one condition, it may be omitted (e.g. `products[]`).
-
-Variables used with the `[]` operator are particularly useful for specifying multiple conditions on a map contained in a collection. Maps are essentially collections of key-value pairs, where the keys are strings. For both collections and maps, the values may either be of the five primitive data types, or collections or maps themselves. The values in maps are referenced by specifying the desired keys inside the `[]` operator as quoted strings.
-
-To see how collections and maps might be used together with variables, consider the following segment (where products is now an array of maps):
-
-```
-{
-	"name": "Suckers",
-"query_dsl": "
-		WITH junk_order AS EVENTS(
-			type IS 'order' 
-AND products[x]['name'] IS 'junk' 
-AND products[x]['price'] > 500"
-)
-
-COUNT(junk_order) > 0
-"
-}
-```
-Note that in the final two conditions in the `junk_order` query, the variable `x` is used as the index for the `products` collection, indicating that the product with the name "junk" must be the same as the one that costs over $500 (or 500 of whatever currency unit `price` represents).
-
-We just saw how variables are used to indicate that any element of a collection may satisfy a condition. To indicate that every element in a collection must satisfy a condition, negate both its comparison operator and the condition itself. Consider the following segment:
+**(rewrite this sentence)** We just saw how variables are used to indicate that any element of a collection may satisfy a condition. To indicate that every element in a collection must satisfy a condition, negate both its comparison operator and the condition itself. Consider the following segment:
 
 ```
 {
@@ -272,6 +250,8 @@ We just saw how variables are used to indicate that any element of a collection 
 ```
 
 This segment represents lovers as anyone not on the "Fighters" list.
-Use cases/ code samples
+
+
+## Examples 
 
 https://github.com/sendgrid/mc-sgql-snowflake/blob/master/lib/translation/field/reserved_fields.go#L15
