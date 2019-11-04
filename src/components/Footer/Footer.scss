@@ -1,0 +1,57 @@
+@import '../../scss/global/variables';
+
+.footer {
+  background: $light-blue;
+  font-size: $scaledown-1;
+  padding: $scaleup-4 0;
+
+  a {
+    color: $slate-80;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: $width-mobile) {
+      flex-wrap: wrap;
+    }
+  }
+
+  li {
+
+    @media (max-width: $width-mobile) {
+      margin: 0 $scale-base-up-04 $scale-base-down-02;
+    }
+
+    &::after {
+      content: ' | ';
+      display: inline-block;
+      margin: 0 $scale-base-up-05;
+
+      @media (max-width: $width-mobile) {
+        display: none;
+      }
+    }
+  }
+
+  li:last-of-type {
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.footer-logo {
+  display: block;
+  margin: 0 auto 20px;
+  height: 28px;
+  width: 28px;
+  background: url('https://sendgrid.com/brand/sg-mark.svg') no-repeat center center;
+  background-size: 34px;
+}
